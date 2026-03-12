@@ -1,9 +1,8 @@
-from langchain_community.document_loaders import CSVLoader, TextLoader, UnstructuredWordDocumentLoader, PyPDFLoader, \
-    UnstructuredMarkdownLoader
 from langchain_core.document_loaders import BaseLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from unstructured.file_utils.filetype import FileType, detect_filetype
 from loguru import logger
+import mineru
 
 class MyCustomLoader(BaseLoader):
     """
@@ -11,12 +10,12 @@ class MyCustomLoader(BaseLoader):
     """
     # 支持加载的文件类型
     file_type = {
-        FileType.CSV: (CSVLoader, {'autodetect_encoding': True}),
-        FileType.TXT: (TextLoader, {'autodetect_encoding': True}),
-        FileType.DOC: (UnstructuredWordDocumentLoader, {}),
-        FileType.DOCX: (UnstructuredWordDocumentLoader, {}),
-        FileType.PDF: (PyPDFLoader, {}),
-        FileType.MD: (UnstructuredMarkdownLoader, {})
+        FileType.CSV: (mineru.CSVLoader, {'autodetect_encoding': True}),
+        FileType.TXT: (mineru.TextLoader, {'autodetect_encoding': True}),
+        FileType.DOC: (mineru.DocLoader, {}),
+        FileType.DOCX: (mineru.DocxLoader, {}),
+        FileType.PDF: (mineru.PDFLoader, {}),
+        FileType.MD: (mineru.MarkdownLoader, {})
     }
 
     # 初始化方法，设置文档加载器和文本分割器
