@@ -1,6 +1,5 @@
 import os
 import inspect
-
 from langchain_community.document_compressors import DashScopeRerank
 from langchain_openai import ChatOpenAI
 from langchain_community.embeddings import DashScopeEmbeddings
@@ -38,4 +37,5 @@ def get_ali_rerank(top_n=10):
     return DashScopeRerank(
         model=ALI_TONGYI_RERANK_MODEL, dashscope_api_key=os.getenv(ALI_TONGYI_API_KEY_OS_VAR_NAME),
         top_n=top_n
+
     )
